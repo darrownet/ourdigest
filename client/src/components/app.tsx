@@ -1,15 +1,16 @@
 import React from 'react';
-
+import Header from "./header/header";
+import Footer from "./footer/footer";
 import Placeholder from "../images/placeholder.png";
 
-interface AppProps {};
-
-const App = (props: AppProps) => {
+const App = () => {
 
     return (
         <div>
-            <p>Hello World!</p>
+            <Header title="Hello World!" />
+            <p>I'm Alive!</p>
             <img src={Placeholder}/>
+            <Footer />
         </div>
     );
 };

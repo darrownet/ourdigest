@@ -1,4 +1,5 @@
 {
+  "root": true,
   "rules": {
     "prefer-template": "off",
     "no-var": 1,
@@ -9,24 +10,43 @@
     "no-template-curly-in-string": 1,
     "no-self-compare": 1,
     "import/prefer-default-export": 0,
-    "arrow-body-style": 1,
-    "import/no-extraneous-dependencies": ["off", { "devDependencies": false }]
+    "arrow-body-style": 0,
+    "import/no-extraneous-dependencies": [
+      "off",
+      {
+        "devDependencies": false
+      }
+    ]
   },
-  "ignorePatterns": ["dist", "node_modules", "webpack.*", "config/paths.js"],
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "webpack.*",
+    "config/paths.js"
+  ],
   "env": {
     "browser": true,
     "es6": true
   },
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module"
   },
-  "plugins": ["prettier"],
+  "plugins": [
+    "prettier",
+    "@typescript-eslint"
+  ],
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "config/webpack.common.js"
+        "config": "configs/webpack.common.js"
       }
     }
   }
