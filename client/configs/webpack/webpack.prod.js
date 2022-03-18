@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const { merge } = require('webpack-merge')
 
 const paths = require('./paths')
@@ -39,6 +40,11 @@ module.exports = merge(common, {
       filename: 'css/[name].[contenthash].css',
       chunkFilename: '[id].css',
     }),
+    new CopyPlugin({
+      patterns: [
+        {from: 'src/config.json', to: '../dist/config.json'}
+      ]
+    })
   ],
   optimization: {
     minimize: true,

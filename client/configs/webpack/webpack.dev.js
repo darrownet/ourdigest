@@ -8,16 +8,23 @@ module.exports = merge(common, {
   // Set the mode to development or production
   mode: 'development',
 
+  target: "web",
+
   // Control how source maps are generated
   devtool: 'inline-source-map',
 
   // Spin up a server for quick development
   devServer: {
+    headers: { 'Access-Control-Allow-Origin': '*' },
     historyApiFallback: true,
     open: true,
     compress: true,
     hot: true,
     port: dotenv.parsed.DEV_PORT,
+    static: {
+      directory: paths.src,
+      publicPath: '/'
+    }
   },
 
   module: {
