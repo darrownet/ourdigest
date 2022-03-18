@@ -4,7 +4,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import Header, { HeaderProps } from "../header";
+import Header from "../header";
 
 describe("<Header />", () => {
   test("should render the title",() => {
