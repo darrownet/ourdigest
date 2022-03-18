@@ -1,1 +1,3 @@
-import "./configs/postcss/postcss-base";
+module.exports = {
+  plugins: require("./configs/postcss/postcss-base")
+}

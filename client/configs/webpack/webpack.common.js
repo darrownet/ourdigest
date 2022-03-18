@@ -13,6 +13,7 @@ module.exports = {
     path: paths.build,
     filename: '[name].bundle.js',
     publicPath: '/',
+    assetModuleFilename: 'images/[name][ext]'
   },
 
   // Customize the webpack build process
@@ -30,8 +31,8 @@ module.exports = {
             ignore: ['*.DS_Store'],
           },
           noErrorOnMissing: true,
-        },
-      ],
+        }
+      ]
     }),
 
     // Generates an HTML file from a template
@@ -41,7 +42,7 @@ module.exports = {
       favicon: paths.src + '/images/favicon.png',
       template: paths.src + '/index.html', // template file
       filename: 'index.html', // output file
-    }),
+    })
   ],
 
   // Determine how modules within the project are treated
@@ -55,11 +56,17 @@ module.exports = {
       },
 
       // Images: Copy image files to build folder
-      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource'
+      },
 
       // Fonts and SVGs: Inline files
-      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
-    ],
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline'
+      }
+    ]
   },
 
   resolve: {
@@ -68,6 +75,6 @@ module.exports = {
     alias: {
       '@': paths.src,
       assets: paths.public,
-    },
-  },
+    }
+  }
 }
