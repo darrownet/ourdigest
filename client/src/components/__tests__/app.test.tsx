@@ -9,6 +9,6 @@ import App from "../app";
 describe("<App />", () => {
     test("should render the application",() => {
         const container = render(<App />).container;
-        expect(App).toBeDefined();
+        expect(container).toBeDefined();
     });
 });
