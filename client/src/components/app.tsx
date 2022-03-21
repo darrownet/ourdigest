@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 
+import {ServicesCreator, IServicesCreatorConfig} from "../core/services/services-creator";
+import {ServiceContextProvider} from "../core/contexts/service-context";
+
 import Header from "./header/header";
 import Footer from "./footer/footer";
 import Placeholder from "../images/placeholder.png";
@@ -16,8 +19,13 @@ const App = () => {
     );
 };
 
+export interface IFileConfig {
+    appVersion: string,
+    servicesConfig: IServicesCreatorConfig
+}
+
 const StrappedApp = () => {
-    const [fileConfig, setFileConfig] = useState(null);
+    const [fileConfig, setFileConfig] = useState<IFileConfig | null>(null);
     const onSuccess = (result: any) => {
         setFileConfig(result.data)
     }
@@ -28,7 +36,16 @@ const StrappedApp = () => {
     useEffect(() => {
         axios.get("/config.json").then(onSuccess, onFailure);
     }, []);
-    return (fileConfig ? <App /> : <></>);
+    if (fileConfig) {
+        const services = ServicesCreator.createServices(fileConfig.servicesConfig || {});
+        return (
+            <ServiceContextProvider value={services}>
+                <App />
+            </ServiceContextProvider>
+        );
+    } else {
+        return (<>;(</>);
+    }
 };
 
 export default StrappedApp;
