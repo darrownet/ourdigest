@@ -19,8 +19,12 @@ const Header: React.FC<HeaderProps> = ({title}: HeaderProps) => {
 
     return (
         <header className="header">
-            <h1>{totalBTC}</h1>
-            <button onClick={onBtnClick}>test data call</button>
+            <h1>{title}</h1>
+            {totalBTC > 0 ?
+                <p>There are {totalBTC} total Bitcoin available in the Bitcoin Monetary Network</p> :
+                <p>How may Bitcoins are available in the Bitcoin Monetary Network?</p>
+            }
+            <button onClick={onBtnClick}>tell me...</button>
         </header>
     );
 };
