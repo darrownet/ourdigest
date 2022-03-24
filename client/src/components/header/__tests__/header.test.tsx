@@ -8,8 +8,9 @@ import Header from "../header";
 
 describe("<Header />", () => {
   test("should render the title",() => {
-    render(<Header title="cheese" />);
+    const propText = "cheese";
+    render(<Header title={propText} />);
     const headingText = screen.getByRole('heading').textContent;
-    expect(headingText).toEqual("cheese");
+    expect(headingText).toEqual(propText);
   });
 });

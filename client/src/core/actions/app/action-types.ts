@@ -1,0 +1,1 @@
+export const DATA_REQUEST_OPEN = 'DATA_REQUEST_OPEN';

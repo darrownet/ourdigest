@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import {Provider} from "react-redux";
 import axios from "axios";
-
+import {generateStore} from "../core/stores/store"
 import {ServicesCreator, IServicesCreatorConfig} from "../core/services/services-creator";
 import {ServiceContextProvider} from "../core/contexts/service-context";
 
@@ -37,11 +38,14 @@ const StrappedApp = () => {
         axios.get("/config.json").then(onSuccess, onFailure);
     }, []);
     if (fileConfig) {
+        const store = generateStore(fileConfig);
         const services = ServicesCreator.createServices(fileConfig.servicesConfig || {});
         return (
-            <ServiceContextProvider value={services}>
-                <App />
-            </ServiceContextProvider>
+            <Provider store={store}>
+                <ServiceContextProvider value={services}>
+                    <App />
+                </ServiceContextProvider>
+            </Provider>
         );
     } else {
         return (<>;(</>);
