@@ -1,7 +1,6 @@
 import * as types from "./app-action-types";
 import {IDataService} from "../services/data.service";
 import {IStorageService} from "../services/storage.service";
-import {array} from "yup";
 import {AxiosResponse} from "axios";
 
 export interface IActionCreators {
