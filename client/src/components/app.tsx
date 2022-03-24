@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Provider} from "react-redux";
 import axios from "axios";
-import {generateStore} from "../core/stores/store"
+import {generateStore} from "../core/stores/app-store"
 import {ServicesCreator, IServicesCreatorConfig} from "../core/services/services-creator";
 import {ServiceContextProvider} from "../core/contexts/service-context";
 

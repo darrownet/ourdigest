@@ -1,11 +1,16 @@
 import axios from "axios";
 
+export interface IDataService {
+    get:Function,
+    post:Function
+}
+
 export interface IDataServiceConfig {
     baseURL: string,
     requestConfig?:object
 }
 
-export const dataService = (config: IDataServiceConfig) => {
+export const dataService = (config: IDataServiceConfig):IDataService => {
 
     /* https://axios-http.com/docs/instance */
 

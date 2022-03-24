@@ -1,4 +1,12 @@
-export const storageService = () => {
+export interface IStorageService {
+    localStorage: {
+        delete:Function,
+        read:Function,
+        save:Function
+    }
+}
+
+export const storageService = ():IStorageService => {
     return {
         localStorage: {
             delete: (key:string)=> {
