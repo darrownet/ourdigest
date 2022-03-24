@@ -12,8 +12,7 @@ const Header: React.FC<HeaderProps> = ({title}: HeaderProps) => {
     const dispatch = useDispatch();
 
     const onBtnClick = () => {
-        console.log(ServiceContext);
-        dispatch(actions.asyncRequestData({foo:'bar'}))
+        dispatch(actions.asyncDataRequest({foo:'bar'}))
     }
 
     return (

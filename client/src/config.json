@@ -2,7 +2,7 @@
   "appVersion": "0.0.1",
   "servicesConfig": {
     "dataServiceConfig": {
-      "baseURL": "https://darrownet.com",
+      "baseURL": "https://blockchain.info/",
       "requestConfig": ""
     }
   }

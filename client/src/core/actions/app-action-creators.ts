@@ -1,9 +1,12 @@
 import * as types from "./app-action-types";
 import {IDataService} from "../services/data.service";
 import {IStorageService} from "../services/storage.service";
+import {array} from "yup";
+import {AxiosResponse} from "axios";
 
 export interface IActionCreators {
-    asyncRequestData: Function
+    asyncDataReceived:Function,
+    asyncDataRequest: Function
 }
 
 export interface IActionCreatorsParams {
@@ -13,7 +16,7 @@ export interface IActionCreatorsParams {
 
 export type AppAction = {
     type: string
-    payload: object
+    payload?: any;
 };
 
 export type AppState = {
@@ -29,23 +32,31 @@ export type DispatchType = (args: AppAction) => AppAction;
 export function appActionCreators(params: IActionCreatorsParams): IActionCreators {
     const {dataService, storageService} = params;
 
-    function asyncRequestData(payload: object) {
-        const action: AppAction = {
-            type: types.DATA_REQUEST_OPEN,
-            payload,
+    function asyncDataRequest(payload: any) {
+        return (dispatch: DispatchType) => {
+            dispatch({type: types.DATA_REQUESTED});
+            const onError = (error:Error) => {
+                console.log(error);
+            }
+            const onFail = (error:Error) => {
+                console.log(error);
+            }
+            const onSuccess = (response:AxiosResponse) => {
+                dispatch(asyncDataReceived(response.data));
+            }
+            dataService.get('/q/totalbc', payload).then(onSuccess, onFail).catch(onError);
         }
-        return simulateHttpRequest(action);
     }
 
-    function simulateHttpRequest(action: AppAction) {
-        return (dispatch: DispatchType) => {
-            setTimeout(() => {
-                dispatch(action)
-            }, 500);
+    function asyncDataReceived(payload: object) {
+        return {
+            type: types.DATA_RECEIVED,
+            payload,
         }
     }
 
     return {
-        asyncRequestData
+        asyncDataReceived,
+        asyncDataRequest
     }
 }

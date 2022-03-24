@@ -5,14 +5,15 @@ export const initialState: AppState = {
     app: {
         apiRequestOpen: false,
         config: {},
-        foo: 'bar'
+        foo: ''
     }
 };
 
 const appReducer = (state: AppState = initialState, action: AppAction): AppState => {
     switch (action.type) {
-        case types.DATA_REQUEST_OPEN:
-            // return {...state,...{...state.app, ...{apiRequestOpen: true}}};
+        case types.DATA_RECEIVED:
+            return <AppState>{...state, app: {...state.app, apiRequestOpen: false, foo: action.payload}}
+        case types.DATA_REQUESTED:
             return <AppState>{...state, app: {...state.app, apiRequestOpen: true}}
         default:
             return state;
