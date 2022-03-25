@@ -1,6 +1,6 @@
 import * as types from "./app-action-types";
-import {IDataService} from "../services/data.service";
-import {IStorageService} from "../services/storage.service";
+import {IDataService} from "../../services/data.service";
+import {IStorageService} from "../../services/storage.service";
 import {AxiosResponse} from "axios";
 
 export interface IActionCreators {
@@ -19,11 +19,9 @@ export type AppAction = {
 };
 
 export type AppState = {
-    app: {
-        apiRequestOpen: boolean,
-        config: object,
-        foo: string
-    }
+    apiRequestOpen: boolean,
+    config: object,
+    foo: string
 };
 
 export type DispatchType = (args: AppAction) => AppAction;
@@ -43,6 +41,7 @@ export function appActionCreators(params: IActionCreatorsParams): IActionCreator
             const onSuccess = (response:AxiosResponse) => {
                 dispatch(asyncDataReceived(response.data));
             }
+            console.log(payload);
             dataService.get('/q/totalbc', payload).then(onSuccess, onFail).catch(onError);
         }
     }

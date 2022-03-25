@@ -1,4 +1,4 @@
-import {appActionCreators} from "../actions/app-action-creators";
+import {appActionCreators} from "../actions/app/app-action-creators";
 import {dataService, IDataService, IDataServiceConfig} from "./data.service";
 import {storageService, IStorageService} from "./storage.service";
 
